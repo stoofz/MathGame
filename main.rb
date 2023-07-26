@@ -41,29 +41,60 @@ class GenQuestion
   end
 end
 
-puts("Welcome to the Math Game!")
 
-puts("Player 1, please enter your name:")
-player1 = Player.new(gets.chomp)
-puts player1.name
+class StartGame
 
-puts("Player 2, please enter your name:")
-player2 = Player.new(gets.chomp)
-puts player2.name
+  attr_reader :player1, :player2, :question
+  attr_writer :player1, :player2, :question
 
-puts("Let's begin!")
+  def initialize
+    @player1 = Player.new("Player 1")
+    @player2 = Player.new("Player 2")
+    @question = GenQuestion.new
+  end
 
-question = GenQuestion.new
-puts("Player 1, please answer the following question:")
+  def start
+    puts("Math Game!")
+    while @player1.lives > 0 && @player2.lives > 0
+      player1_turn
+      player2_turn
+    end
+    game_over
+  end
 
-puts("What does #{question.num1} plus #{question.num2} equal?")
-question.user_answer = gets.chomp.to_i
 
-if question.check_answer
-  puts("P2: #{player1.lives}/3.")
-else
-  player1.lose_life
-  puts("P1: #{player1.lives}/3.")
+  def player1_turn
+    puts("----- NEW TURN -----")
+    question = GenQuestion.new
+    puts("Player 1: " + question.question)
+    question.user_answer = gets.chomp.to_i
+    if question.check_answer
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+    else
+      player1.lose_life
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+    end
+  end
+
+
+  def player2_turn
+    puts("----- NEW TURN -----")
+    question = GenQuestion.new
+    puts("Player 2: " + question.question)
+    question.user_answer = gets.chomp.to_i
+    if question.check_answer
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+    else
+      player2.lose_life
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+    end
+  end
+
+
+  def game_over
+    puts("----- GAME OVER -----")
+    puts("Good bye!")
+  end
 end
 
-
+StartGame.new.start()
