@@ -41,11 +41,11 @@ class StartGame
     question.user_answer = gets.chomp.to_i
     if question.check_answer
       puts("YES, You are Correct.")
-      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3")
     else
       @player_array[@player_turn].lose_life
       puts("Seriously? No!")
-      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3.")
+      puts("P1: #{player1.lives}/3 vs P2: #{player2.lives}/3")
     end
     if @player_turn == 0
       @player_turn = 1
