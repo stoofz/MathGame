@@ -5,8 +5,8 @@ class GenQuestion
   attr_writer :user_answer
 
   def initialize
-    @num1 = rand(1...9)
-    @num2 = rand(1...9)
+    @num1 = rand(1...25)
+    @num2 = rand(1...25)
     @answer = @num1 + @num2
     @user_answer = nil
   end
