@@ -17,10 +17,8 @@ class GenQuestion
 
   def check_answer
     if @user_answer == @answer
-      puts("YES, You are Correct.")
       true
     else
-      puts("Seriously? No!")
       false
     end
   end
