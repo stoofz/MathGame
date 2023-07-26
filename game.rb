@@ -3,8 +3,8 @@ require './questions'
 
 class StartGame
 
-  attr_reader :player1, :player2, :question, :player_turn, :player_array
-  attr_writer :player1, :player2, :question, :player_turn, :player_array
+  attr_reader :player1, :player2, :question
+  attr_writer :player1, :player2, :question
 
   def initialize
     @player1 = Player.new("Player 1")
